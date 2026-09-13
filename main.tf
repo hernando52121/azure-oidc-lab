@@ -116,9 +116,16 @@ resource "azurerm_key_vault" "sec_lab_kv" {
   }
 }
 
-# Crear un secreto de prueba dentro del Key Vault
+# Generador de contraseña aleatoria segura
+resource "random_password" "db_pwd" {
+  length           = 16
+  special          = true
+  override_special = "!@#$%"
+}
+
+# Guardar la contraseña generada en el Key Vault
 resource "azurerm_key_vault_secret" "db_password" {
   name         = "AdminDatabasePassword"
-  value        = "P@ssw0rdSuperSeguro2026!"
+  value        = random_password.db_pwd.result
   key_vault_id = azurerm_key_vault.sec_lab_kv.id
 }
