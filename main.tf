@@ -125,7 +125,11 @@ resource "random_password" "db_pwd" {
 
 # Guardar la contraseña generada en el Key Vault
 resource "azurerm_key_vault_secret" "db_password" {
-  name         = "AdminDatabasePassword"
-  value        = random_password.db_pwd.result
-  key_vault_id = azurerm_key_vault.sec_lab_kv.id
+  name            = "AdminDatabasePassword"
+  value           = random_password.db_pwd.result
+  key_vault_id    = azurerm_key_vault.sec_lab_kv.id
+  
+  # Políticas de seguridad adicionales requeridas por SAST
+  content_type    = "Password"
+  expiration_date = "2027-12-31T23:59:59Z"
 }
