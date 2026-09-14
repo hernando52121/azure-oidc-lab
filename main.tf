@@ -16,6 +16,8 @@ provider "azurerm" {
   features {}
 }
 
+# Cambio manual para despertar el pipeline
+
 # 2. Grupo de Recursos (Contenedor lógico - Costo: $0)
 resource "azurerm_resource_group" "sec_lab_rg" {
   name     = "rg-security-lab-02"  # <-- Cambiamos el nombre aquí
