@@ -35,6 +35,16 @@ resource "azurerm_resource_group_policy_assignment" "restrict_locations" {
   })
 }
 
+# Obtener la IP del Runner de GitHub Actions
+data "http" "runner_ip" {
+  url = "https://api.ipify.org"
+}
+
+# Obtener la IP del Runner de GitHub Actions
+data "http" "runner_ip" {
+  url = "https://api.ipify.org"
+}
+
 # 4. SEGURIDAD DE RED: NSG y VNet (Costo: $0)
 resource "azurerm_network_security_group" "sec_lab_nsg" {
   name                = "nsg-zerotrust-01"
@@ -108,6 +118,7 @@ resource "azurerm_key_vault" "sec_lab_kv" {
   network_acls {
     default_action = "Deny"
     bypass         = "AzureServices"
+    ip_rules       = [data.http.runner_ip.response_body] # Permitir la IP temporal
   }
 
   sku_name = "standard"
