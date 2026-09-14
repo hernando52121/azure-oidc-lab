@@ -118,7 +118,7 @@ resource "azurerm_key_vault" "sec_lab_kv" {
   network_acls {
     default_action = "Deny"
     bypass         = "AzureServices"
-    ip_rules       = [data.http.runner_ip.response_body] # Permitir la IP temporal
+    ip_rules       = [chomp(data.http.runner_ip.response_body)] # Permitir la IP temporal
   }
 
   sku_name = "standard"
