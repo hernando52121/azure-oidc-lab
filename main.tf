@@ -18,8 +18,8 @@ provider "azurerm" {
 
 # 2. Grupo de Recursos (Contenedor lógico - Costo: $0)
 resource "azurerm_resource_group" "sec_lab_rg" {
-  name     = "rg-security-lab-01"
-  location = "East US"
+  name     = "rg-security-lab-02"  # <-- Cambiamos el nombre aquí
+  location = "East US"             # (Deja la ubicación que ya tenías)
 }
 
 # 3. GOBIERNO: Asignación de Azure Policy (Costo: $0)
