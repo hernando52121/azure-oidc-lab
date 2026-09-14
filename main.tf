@@ -42,11 +42,6 @@ data "http" "runner_ip" {
   url = "https://api.ipify.org"
 }
 
-# Obtener la IP del Runner de GitHub Actions
-data "http" "runner_ip" {
-  url = "https://api.ipify.org"
-}
-
 # 4. SEGURIDAD DE RED: NSG y VNet (Costo: $0)
 resource "azurerm_network_security_group" "sec_lab_nsg" {
   name                = "nsg-zerotrust-01"
