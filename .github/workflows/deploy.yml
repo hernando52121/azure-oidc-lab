@@ -23,7 +23,10 @@ jobs:
           subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
 
       - name: 3. Escaneo Estático de Seguridad (SAST)
-        uses: aquasecurity/tfsec-action@v1.0.3
+        run: |
+          curl -s -Lo tfsec https://github.com/aquasecurity/tfsec/releases/latest/download/tfsec-linux-amd64
+          chmod +x tfsec
+          ./tfsec .
 
       - name: 4. Instalar Terraform
         uses: hashicorp/setup-terraform@v3
